@@ -2,7 +2,7 @@ import React from 'react';
 import Footer from '../Footer/Footer';
 import HeaderImg from '../HeaderImg/HeaderImg';
 import HouseRent from '../HouseRent/HouseRent';
-import Nevbar from '../Nevbar';
+import Nevbar from '../Nevbar/Nevbar';
 import Service from '../Service/Service';
 
 const Home = () => {

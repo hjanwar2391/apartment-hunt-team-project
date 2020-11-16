@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
@@ -7,14 +6,18 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Home from './Component/Home/Nevbar/Home/Home';
+import Home from './Component/Home/Home/Home';
 
 function App() {
-  // hello pias commited
   return (
-    <div>
-      <Home></Home>
-    </div>
+    <Router>
+      <Route path="/home">
+        <Home />
+      </Route>
+      <Route exact path="/">
+        <Home />
+      </Route>
+    </Router>
   );
 }
 

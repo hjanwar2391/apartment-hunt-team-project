@@ -1,43 +1,38 @@
 import React from 'react';
 import './Navbar.css'
 import logo from '../../../logos/Logo.png'
-const Nevbar = () => {
-    return (
-        <div>
-              <nav class="navbar navbar-expand-md">          
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span> <i class="fas fa-bars navbar-icon"></i> </span>
-            </button>
+import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button'
 
-            <a class="navbar-brand" href="#">
-                <img src={logo} alt="logo"/>
-            </a>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                  <a class="nav-link text-center text-md-left" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-center text-md-left" href="#about-me">About </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-center text-md-left" href="#tutorial">Service</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-center text-md-left" href="#feedback">Concerns</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-center text-md-left" href="#contact">Event</a>
-                </li> 
-                <li class="nav-item">
-                  <a class="nav-link text-center text-md-left" href="#contact">Contact</a>
-                </li>
-                <button className="login-btn">Log-in</button>               
-              </ul>
-            </div>
-          </nav>
-        </div>
-    );
+const Nevbar = () => {
+  return (
+    <Container>
+      <Navbar bg="transparent" expand="lg">
+
+        <Navbar.Brand href="#home">
+          <img
+            src={logo}
+            height="40"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto d-flex justify-content-center align-items-center">
+            <Link className="m-3" to="/home" >Home</Link>
+            <Link className="m-3" to="/home">About</Link>
+            <Link className="m-3" to="/home">Service</Link>
+            <Link className="m-3" to="/home">Concerns</Link>
+            <Link className="m-3" to="/home">Event</Link>
+            <Link className="m-3" to="/home">Contact</Link>
+            <Button variant="success">Login</Button>  
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    </Container>
+  );
 };
 
 export default Nevbar;

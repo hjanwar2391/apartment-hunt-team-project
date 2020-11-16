@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
@@ -7,24 +6,32 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Home from './Component/Home/Nevbar/Home/Home';
-import LogIn from './Component/LogIn/LogIn';
+import Home from './Component/Home/Home/Home';
+import Sidebar from './Component/Sidebar/Sidebar';
+import AddRentHouse from './Component/AddRentHouse/AddRentHouse';
+import BookingList from './Component/BookingList/BookingList';
 
 function App() {
+  // hello world
   return (
-    <div>
-      
-      <Router>
-        <Switch>
-          <Route path="/">
-            <Home></Home>
-          </Route>
-          <Route path="/login">
-            <LogIn></LogIn>
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+    <Router>
+      <Route path="/home">
+        <Home />
+      </Route>
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route exact path="/AddRentHouse">
+        <Sidebar/>
+      </Route>
+      <Route exact path="/myRent">
+        <AddRentHouse/>
+      </Route>
+      <Route exact path="/bookingList">
+        <BookingList/>
+      </Route>
+    </Router>
+    
   );
 }
 

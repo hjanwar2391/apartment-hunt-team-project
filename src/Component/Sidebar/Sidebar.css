@@ -1,0 +1,22 @@
+
+.sidebar{
+    background:white;
+    
+}
+.sidebar li{
+    margin-bottom: 2em;
+}
+.sidebar li:hover span{
+    display: inline-block;
+    transform: translate(5px);
+}
+.sidebar svg{
+    margin-right: 5px;
+}
+.colorHere{
+    background: rgb(236, 230, 236);
+}
+.bgColor{
+    background-color: white;
+    border-radius: 5px;
+}

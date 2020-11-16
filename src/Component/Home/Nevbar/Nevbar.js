@@ -3,7 +3,7 @@ import './Navbar.css'
 import logo from '../../../logos/Logo.png'
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
 
 const Nevbar = () => {
   return (
@@ -22,10 +22,10 @@ const Nevbar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto d-flex justify-content-center align-items-center">
             <Link className="m-3" to="/home" >Home</Link>
-            <Link className="m-3" to="/home">About</Link>
+            <Link className="m-3" to="/sidebar">About</Link>
             <Link className="m-3" to="/home">Service</Link>
             <Link className="m-3" to="/home">Concerns</Link>
-            <Link className="m-3" to="/home">Event</Link>
+            <Link className="m-3" to="/AddRentHouse">Event</Link>
             <Link className="m-3" to="/home">Contact</Link>
             <Button variant="success">Login</Button>  
           </Nav>

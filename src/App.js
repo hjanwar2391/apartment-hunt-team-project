@@ -8,11 +8,22 @@ import {
   Link
 } from "react-router-dom";
 import Home from './Component/Home/Nevbar/Home/Home';
+import LogIn from './Component/LogIn/LogIn';
 
 function App() {
   return (
     <div>
-      <Home></Home>
+      
+      <Router>
+        <Switch>
+          <Route path="/">
+            <Home></Home>
+          </Route>
+          <Route path="/login">
+            <LogIn></LogIn>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

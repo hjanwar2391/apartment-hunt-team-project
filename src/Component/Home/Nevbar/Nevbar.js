@@ -1,6 +1,7 @@
 import React from 'react';
 import './Navbar.css'
 import logo from '../../../logos/Logo.png'
+import { Link } from 'react-router-dom';
 const Nevbar = () => {
     return (
         <div>
@@ -32,7 +33,9 @@ const Nevbar = () => {
                 <li class="nav-item">
                   <a class="nav-link text-center text-md-left" href="#contact">Contact</a>
                 </li>
-                <button className="login-btn">Log-in</button>               
+                <a href="/login">
+                <button className="login-btn">Log-in</button>
+                </a>            
               </ul>
             </div>
           </nav>

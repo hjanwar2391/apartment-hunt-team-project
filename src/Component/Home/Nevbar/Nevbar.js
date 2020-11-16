@@ -27,7 +27,8 @@ const Nevbar = () => {
             <Link className="m-3" to="/home">Concerns</Link>
             <Link className="m-3" to="/home">Event</Link>
             <Link className="m-3" to="/home">Contact</Link>
-            <Button variant="success">Login</Button>  
+            <Link className="m-3" to="/login"><Button variant="success">Login</Button></Link>
+             
           </Nav>
         </Navbar.Collapse>
       </Navbar>

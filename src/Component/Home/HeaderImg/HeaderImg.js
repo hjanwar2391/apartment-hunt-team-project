@@ -1,8 +1,7 @@
 import React from 'react';
 import './HeaderImg.css';
 import headerImg from '../../../images/Rectangle 13.png';
-import Form from 'react-bootstrap/Form'
-import { Col, Row, InputGroup, Container, FormControl } from 'react-bootstrap';
+import { InputGroup, Container, FormControl } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button'
 
 const HeaderImg = () => {

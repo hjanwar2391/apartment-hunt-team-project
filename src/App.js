@@ -4,12 +4,14 @@ import {
   BrowserRouter as Router,
   Route
 } from "react-router-dom";
-import Home from './Component/Home/Home/Home';
+import Home from './Component/Home/Home/Home';    
 import Login from './Component/Login/Login';
 import CreateAccount from './Component/CreateAccount/CreateAccount';
 import ApartmentDetails from './Component/ApartmentDetails/ApartmentDetails';
 import { createContext, useState } from 'react';
-
+import Sidebar from './Component/Sidebar/Sidebar';
+import AddRentHouse from './Component/AddRentHouse/AddRentHouse';
+import BookingList from './Component/BookingList/BookingList';
 // export data
 export const userContext = createContext();
 export const userData = createContext();
@@ -34,11 +36,19 @@ function App() {
           <Route path="/details">
             <ApartmentDetails />
           </Route>
+    <Route exact path="/AddRentHouse">
+        <Sidebar/>
+      </Route>
+      <Route exact path="/myRent">
+        <AddRentHouse/>
+      </Route>
+      <Route exact path="/bookingList">
+        <BookingList/>
+      </Route>
           <Route exact path="/">
             <Home />
           </Route>
         </Router>
-
       </userData.Provider>
     </userContext.Provider>
   );

@@ -16,7 +16,7 @@ const Login = () => {
         email: '',
         photo: '',
         password: '',
-        error: ''
+        error: '',
     });
 
     if (firebase.apps.length === 0) {

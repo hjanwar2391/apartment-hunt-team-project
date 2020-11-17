@@ -2,8 +2,14 @@ import React, { useContext } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import Nevbar from '../Home/Nevbar/Nevbar';
 import headerImg from '../../images/Rectangle 13.png';
-import './ApartmentDetails.css'
+import img1 from '../../images/Rectangle 396.png';
+import img2 from '../../images/Rectangle 398.png';
+import img3 from '../../images/Rectangle 403.png';
+import img4 from '../../images/Rectangle 404.png';
+import img5 from '../../images/Rectangle 405.png';
+import './ApartmentDetails.css';
 import { userData } from '../../App';
+import { Link } from 'react-router-dom';
 
 const ApartmentDetails = () => {
     const [apartmentDetails, setApartmentDetails] = useContext(userData);
@@ -19,12 +25,30 @@ const ApartmentDetails = () => {
                 </Container>
             </div>
             <Row>
-                <Col xs={8}>
+                <Col xs={8} className="p-5 mt-3">
+                    <div className="imgView mt-3" >
+                        <img src={img1} alt="" />
+                    </div>
+                    <div className="row mt-4 smallImg">
+                        <div className="col-3">
+                            <img src={img2} alt=""/>
+                        </div>
+                        <div className="col-3">
+                            <img src={img3} alt=""/>
+                        </div>
+                        <div className="col-3">
+                            <img src={img4} alt=""/>
+                        </div>
+                        <div className="col-3">
+                            <img src={img5} alt=""/>
+                        </div>
+                        
+                    </div>
                 </Col>
                 <Col xs={4}>
-                    <div className="p-3">
+                    <div className="formBox p-3 ">
                         <form>
-                            <div class="form-group">
+                            <div class="form-group ">
                                 <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name"/>
                             </div>
                             <div class="form-group">
@@ -36,7 +60,7 @@ const ApartmentDetails = () => {
                             <div class="form-group">
                                 <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Your Message"/>
                             </div>
-                            <button type="submit" class="btn btn-success w-100">Request Booking</button>
+                            <Link to="/AddRentHouse"><button class="btn btn-success w-100">Request Booking</button></Link>
                         </form>
                     </div>
                 </Col>

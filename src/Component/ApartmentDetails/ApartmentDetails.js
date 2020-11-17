@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import Nevbar from '../Home/Nevbar/Nevbar';
 import headerImg from '../../images/Rectangle 13.png';
@@ -14,6 +14,20 @@ import { Link } from 'react-router-dom';
 const ApartmentDetails = () => {
     const [apartmentDetails, setApartmentDetails] = useContext(userData);
     console.log(apartmentDetails)
+
+    const [info, setInfo] = useState({});
+
+    const handleBlur = e => {
+        const newInfo = { ...info };
+        newInfo[e.target.name] = e.target.value;
+        setInfo(newInfo);
+        
+    }
+    
+    const handleSubmit = () => {
+        console.log(info);
+    }
+    
     return (
         <div>
             <Nevbar></Nevbar>
@@ -47,18 +61,18 @@ const ApartmentDetails = () => {
                 </Col>
                 <Col xs={4}>
                     <div className="formBox p-3 ">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div class="form-group ">
-                                <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name"/>
+                                <input onBlur={handleBlur}  name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name"/>
                             </div>
                             <div class="form-group">
-                                <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Phone"/>
+                                <input onBlur={handleBlur} name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Phone"/>
                             </div>
                             <div class="form-group">
-                                <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"/>
+                                <input onBlur={handleBlur} name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"/>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Your Message"/>
+                                <input onBlur={handleBlur} type="text" class="form-control" id="exampleInputPassword1" placeholder="Your Message"/>
                             </div>
                             <Link to="/AddRentHouse"><button class="btn btn-success w-100">Request Booking</button></Link>
                         </form>

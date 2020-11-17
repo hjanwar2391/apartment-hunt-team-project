@@ -12,6 +12,7 @@ import Sidebar from './Component/Sidebar/Sidebar';
 import AddRentHouse from './Component/AddRentHouse/AddRentHouse';
 import BookingList from './Component/BookingList/BookingList';
 import Login from './Component/Login/Login';
+import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
 
 // export data
 export const userContext = createContext();
@@ -34,18 +35,18 @@ function App() {
           <Route path="/createAccount">
             <CreateAccount />
           </Route>
-          <Route path="/details">
+          <PrivateRoute path="/details">
             <ApartmentDetails />
-          </Route>
-          <Route exact path="/AddRentHouse">
+          </PrivateRoute>
+          <PrivateRoute  exact path="/AddRentHouse">
             <Sidebar />
-          </Route>
-          <Route exact path="/myRent">
+          </PrivateRoute>
+          <PrivateRoute  exact path="/myRent">
             <AddRentHouse />
-          </Route>
-          <Route exact path="/bookingList">
+          </PrivateRoute>
+          <PrivateRoute exact path="/bookingList">
             <BookingList />
-          </Route>
+          </PrivateRoute>
           <Route exact path="/">
             <Home />
           </Route>

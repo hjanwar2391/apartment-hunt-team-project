@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Nevbar from '../Home/Nevbar/Nevbar';
 import './Login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import firebase from "firebase/app";
-
 import "firebase/auth";
 import firebaseConfig from '../CreateAccount/firebaseConfig';
+import { userContext } from '../../App';
 
 const Login = () => {
+    const [loggedInUser, SetLoggedInUser] = useContext(userContext);
     const [user, setUser] = useState({
         isSignedIn: false,
         name: '',
@@ -22,6 +23,10 @@ const Login = () => {
     if (firebase.apps.length === 0) {
         firebase.initializeApp(firebaseConfig);
     }
+
+    const history = useHistory();
+    const location = useLocation();
+    const { from } = location.state || { from: { pathname: "/AddRentHouse" } };
 
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     const handleGoogleSignIn = () => {
@@ -36,6 +41,9 @@ const Login = () => {
                     photo: photoURL
                 };
                 setUser(signedInUser);
+                SetLoggedInUser(signedInUser)
+                console.log(signedInUser);
+                history.replace(from);
             }).catch(error => {
                 console.log(error);
             });
@@ -55,6 +63,7 @@ const Login = () => {
                     photo: photoURL
                 };
                 setUser(signedInUser);
+                history.replace(from);
             }).catch((error) => {
                 console.log(error);
             });
@@ -83,11 +92,14 @@ const Login = () => {
                     newUserInfo.isSignedIn = true;
                     newUserInfo.error = '';
                     setUser(newUserInfo);
+                    SetLoggedInUser(newUserInfo);
+                    history.replace(from);
                 })
                 .catch((error) => {
                     const newUserInfo = { ...user };
                     newUserInfo.error = error.message;
                     setUser(newUserInfo);
+                    SetLoggedInUser(newUserInfo);
                 });
         }
         e.preventDefault();

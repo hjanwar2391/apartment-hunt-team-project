@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Navbar.css'
 import logo from '../../../logos/Logo.png'
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import firebase from "firebase/app";
+import { userContext } from '../../../App';
 
 const Nevbar = () => {
+  const [loggedInUser, SetLoggedInUser] = useContext(userContext);
+    const handleSignOut = () => {
+        firebase.auth().signOut()
+            .then(res => {
+                const signedOutUser = {
+                    isSignedIn: false,
+                    name: '',
+                    email: '',
+                    photo: '',
+                    error: ''
+                };
+                SetLoggedInUser(signedOutUser);
+
+            }).catch((error) => {
+            });
+    }
   return (
     <Container>
       <Navbar bg="transparent" expand="lg">
@@ -27,7 +45,11 @@ const Nevbar = () => {
             <Link className="m-3" to="/home">Concerns</Link>
             <Link className="m-3" to="/AddRentHouse">Event</Link>
             <Link className="m-3" to="/home">Contact</Link>
-            <Link className="m-3" to="/login"><Button variant="success">Login</Button></Link>
+            {loggedInUser.isSignedIn ?
+                            <Button className="px-3 mr-5" variant="danger" onClick={handleSignOut} >Log Out</Button>
+                            : <Link className="m-3" to="/AddRentHouse"><Button variant="success">Login</Button></Link>
+                        }
+            
              
           </Nav>
         </Navbar.Collapse>

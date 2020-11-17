@@ -8,44 +8,47 @@ import img3 from '../../images/Rectangle 403.png';
 import img4 from '../../images/Rectangle 404.png';
 import img5 from '../../images/Rectangle 405.png';
 import './ApartmentDetails.css';
-import { userData } from '../../App';
-import { Link } from 'react-router-dom';
+import { userContext, userData } from '../../App';
+import { Link, useHistory } from 'react-router-dom';
 
 const ApartmentDetails = () => {
     const [apartmentDetails, setApartmentDetails] = useContext(userData);
-    console.log(apartmentDetails)
+    const [loggedInUser, setLoggedInUser] = useContext(userContext);
 
     const [info, setInfo] = useState({});
+    console.log(info)
 
     const handleBlur = e => {
-        const newInfo = { ...info };
+        const newInfo = { ...info, ...loggedInUser, ...apartmentDetails };
         newInfo[e.target.name] = e.target.value;
         setInfo(newInfo);
-        
-    }
-    
-    const handleSubmit = () => {
-        
-        const formData = new FormData()
-        console.log(info);
-        formData.append('name', info.name);
-        formData.append('phone', info.phone);
-        formData.append('email', info.email);
-        formData.append('message', info.message);
 
-        fetch('/', {
+    }
+
+    let history = useHistory();
+
+    const handleSubmit = (event) => {
+
+        fetch('http://localhost:5000/addRequest', {
             method: 'POST',
-            body: formData
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(info)
         })
             .then(response => response.json())
             .then(data => {
                 console.log(data)
+                // if (data) {
+                    history.push("/myRent");
+                // } else {
+                //     alert("Could Not Add !!")
+                // }
             })
             .catch(error => {
                 console.error(error)
             })
+        event.preventDefault();
     }
-    
+
     return (
         <div>
             <Nevbar></Nevbar>
@@ -63,36 +66,36 @@ const ApartmentDetails = () => {
                     </div>
                     <div className="row mt-4 smallImg">
                         <div className="col-3">
-                            <img src={img2} alt=""/>
+                            <img src={img2} alt="" />
                         </div>
                         <div className="col-3">
-                            <img src={img3} alt=""/>
+                            <img src={img3} alt="" />
                         </div>
                         <div className="col-3">
-                            <img src={img4} alt=""/>
+                            <img src={img4} alt="" />
                         </div>
                         <div className="col-3">
-                            <img src={img5} alt=""/>
+                            <img src={img5} alt="" />
                         </div>
-                        
+
                     </div>
                 </Col>
                 <Col xs={4}>
                     <div className="formBox p-3 ">
                         <form onSubmit={handleSubmit}>
                             <div class="form-group ">
-                                <input onBlur={handleBlur}  name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name"/>
+                                <input onBlur={handleBlur} name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" required />
                             </div>
                             <div class="form-group">
-                                <input onBlur={handleBlur} name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Phone"/>
+                                <input onBlur={handleBlur} name="phone" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Phone" required />
                             </div>
                             <div class="form-group">
-                                <input onBlur={handleBlur} name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"/>
+                                <input onBlur={handleBlur} name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" required />
                             </div>
                             <div class="form-group">
-                                <input onBlur={handleBlur} type="text" class="form-control" id="exampleInputPassword1" placeholder="Your Message"/>
+                                <input onBlur={handleBlur} name="message" type="text" class="form-control" id="exampleInputPassword1" placeholder="Your Message" required />
                             </div>
-                            <Link to="/AddRentHouse"><button class="btn btn-success w-100">Request Booking</button></Link>
+                            <button class="btn btn-success w-100" type="submit">Request Booking</button>
                         </form>
                     </div>
                 </Col>

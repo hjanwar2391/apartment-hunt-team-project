@@ -25,7 +25,25 @@ const ApartmentDetails = () => {
     }
     
     const handleSubmit = () => {
+        
+        const formData = new FormData()
         console.log(info);
+        formData.append('name', info.name);
+        formData.append('phone', info.phone);
+        formData.append('email', info.email);
+        formData.append('message', info.message);
+
+        fetch('/', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+            .catch(error => {
+                console.error(error)
+            })
     }
     
     return (
